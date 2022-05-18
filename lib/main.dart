@@ -3,8 +3,9 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 
 void main() {
   runApp(const MyApp());
+
   doWhenWindowReady(() {
-    const initialSize = Size(600, 450);
+    const initialSize = Size(1100, 700);
     appWindow.minSize = initialSize;
     appWindow.size = initialSize;
     appWindow.alignment = Alignment.center;

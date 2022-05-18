@@ -9,7 +9,7 @@ class Storage {
     return protos;
   }
 
-  static void removeProto(String path) async {
+  static Future removeProto(String path) async {
     var prefs = await SharedPreferences.getInstance();
     var protos = prefs.getStringList('protos') ?? [];
     protos.remove(path);
