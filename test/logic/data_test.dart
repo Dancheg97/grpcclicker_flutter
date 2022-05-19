@@ -26,7 +26,21 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     var testPath = 'some/path';
     await Storage.addProto(testPath);
+    var exists = await Storage.addProto(testPath);
     var pathes = await Storage.getProtoPathes();
     expect(pathes[0], testPath);
+    expect(exists, 'exists');
   });
+  test('getAdresses', () async {});
+  test('removeAdress', () async {});
+  test('addAdress', () async {});
+  test('setCurrentAdress', () async {});
+  test('getCurrentAdress', () async {});
+  test('setCurrentRequest', () async {});
+  test('getCurrentRequest', () async {});
+  test('getCurrentRequest', () async {});
+  test('setCurrentPath', () async {});
+  test('getCurrentPath', () async {});
+  test('setCurrentMethod', () async {});
+  test('getCurrentMethod', () async {});
 }
