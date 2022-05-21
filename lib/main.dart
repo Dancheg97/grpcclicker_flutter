@@ -46,15 +46,15 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: WindowBorder(
-          color: Palette.black,
+          color: Colors.black,
           width: 1,
           child: MultiSplitViewTheme(
             data: MultiSplitViewThemeData(
               dividerPainter: DividerPainters.background(
-                color: Palette.blueDark,
-                highlightedColor: Palette.yellow,
+                color: Palette.black,
+                highlightedColor: Palette.darkGrey,
               ),
-              dividerThickness: 1.82,
+              dividerThickness: 5.62,
             ),
             child: MultiSplitView(
               initialAreas: [

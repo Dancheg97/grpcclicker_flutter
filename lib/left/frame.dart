@@ -7,7 +7,7 @@ class LeftSide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Palette.yellow,
+      color: Palette.black,
     );
   }
 }
