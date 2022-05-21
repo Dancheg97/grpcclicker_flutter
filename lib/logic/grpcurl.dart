@@ -4,7 +4,7 @@ import 'dart:io';
 const ls = LineSplitter();
 
 class Grpcurl {
-  static Future<bool> check(String path) async {
+  static Future<bool> checkProtoFile(String path) async {
     var callResult = await Process.run(
       'grpcurl',
       ['-import-path', '/', '-proto', path, 'describe'],
@@ -15,7 +15,7 @@ class Grpcurl {
     return false;
   }
 
-  static Future<ProtoStructure> proto(context, String path) async {
+  static Future<ProtoStructure> describeProtoFile(String path) async {
     var callResult = await Process.run(
       'grpcurl',
       ['-import-path', '/', '-proto', path, 'describe'],
@@ -81,7 +81,8 @@ class Grpcurl {
     );
   }
 
-  static Future<ProtoFields> message(String proto, String message) async {
+  static Future<ProtoFields> describeMessage(
+      String proto, String message) async {
     if (message == '.google.protobuf.Empty') {
       return ProtoFields(error: '', fields: []);
     }
@@ -103,7 +104,7 @@ class Grpcurl {
           fields.fields.add(ProtoField(
             name: splitted[4],
             type: 'map<$key, $value>',
-            fill: '{}',
+            json: '{}',
             optional: false,
           ));
           continue;
@@ -112,7 +113,7 @@ class Grpcurl {
           fields.fields.add(ProtoField(
             name: splitted[4],
             type: 'repeated ${splitted[3]}',
-            fill: '[]',
+            json: '[]',
             optional: false,
           ));
           continue;
@@ -127,7 +128,7 @@ class Grpcurl {
           fields.fields.add(ProtoField(
             name: splitted[3],
             type: type,
-            fill: '1.0',
+            json: '1.0',
             optional: isOptional,
           ));
           continue;
@@ -148,7 +149,7 @@ class Grpcurl {
           fields.fields.add(ProtoField(
             name: splitted[3],
             type: type,
-            fill: '1',
+            json: '1',
             optional: isOptional,
           ));
           continue;
@@ -157,7 +158,7 @@ class Grpcurl {
           fields.fields.add(ProtoField(
             name: splitted[3],
             type: type,
-            fill: 'false',
+            json: 'false',
             optional: isOptional,
           ));
           continue;
@@ -166,7 +167,7 @@ class Grpcurl {
           fields.fields.add(ProtoField(
             name: splitted[3],
             type: type,
-            fill: '"some string"',
+            json: '"some string"',
             optional: isOptional,
           ));
           continue;
@@ -175,7 +176,7 @@ class Grpcurl {
           fields.fields.add(ProtoField(
             name: splitted[3],
             type: type,
-            fill: '"aGVsbG8gd29ybGQ="',
+            json: '"aGVsbG8gd29ybGQ="',
             optional: isOptional,
           ));
           continue;
@@ -183,7 +184,7 @@ class Grpcurl {
         fields.fields.add(ProtoField(
           name: splitted[3],
           type: type,
-          fill: '"?"',
+          json: '"?"',
           optional: isOptional,
         ));
       }
@@ -191,10 +192,10 @@ class Grpcurl {
     return fields;
   }
 
-  static String json(ProtoFields fields) {
+  static String convertMessageToJson(ProtoFields fields) {
     var resultString = '{\n';
     for (var field in fields.fields) {
-      resultString += '    "' + field.name + '": ' + field.fill + ',\n';
+      resultString += '    "' + field.name + '": ' + field.json + ',\n';
     }
     resultString = resultString.substring(0, resultString.length - 2);
     resultString += '\n}';
@@ -284,12 +285,12 @@ class ProtoFields {
 class ProtoField {
   final String name;
   final String type;
-  final String fill;
+  final String json;
   final bool optional;
   ProtoField({
     required this.name,
     required this.type,
-    required this.fill,
+    required this.json,
     required this.optional,
   });
 }
