@@ -8,6 +8,7 @@ class RightSide extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Palette.veryDark,
+      child: Column(),
     );
   }
 }

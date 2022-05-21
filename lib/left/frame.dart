@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grpcclicker/left/move_area.dart';
 import 'package:grpcclicker/style/palette.dart';
 
 class LeftSide extends StatelessWidget {
@@ -8,6 +9,11 @@ class LeftSide extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Palette.black,
+      child: Column(
+        children: const [
+          MoveAreaLeft(),
+        ],
+      ),
     );
   }
 }
