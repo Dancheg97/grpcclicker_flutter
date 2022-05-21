@@ -29,8 +29,7 @@ class Storage {
 
   static Future<List<String>> getAdresses() async {
     var prefs = await SharedPreferences.getInstance();
-    var protos = prefs.getStringList('adresses') ?? [];
-    return protos;
+    return prefs.getStringList('adresses') ?? [];
   }
 
   static Future removeAdress(String adress) async {
@@ -54,7 +53,7 @@ class Storage {
     return '';
   }
 
-  static void setCurrentAdress(String adress) async {
+  static Future setCurrentAdress(String adress) async {
     var prefs = await SharedPreferences.getInstance();
     prefs.setString('curAdress', adress);
   }
@@ -64,7 +63,7 @@ class Storage {
     return prefs.getString('curAdress') ?? '';
   }
 
-  static void setCurrentRequest(String request) async {
+  static Future setCurrentRequest(String request) async {
     var prefs = await SharedPreferences.getInstance();
     prefs.setString('curRequest', request);
   }
@@ -74,7 +73,7 @@ class Storage {
     return prefs.getString('curRequest') ?? '';
   }
 
-  static void setCurrentPath(String path) async {
+  static Future setCurrentPath(String path) async {
     var prefs = await SharedPreferences.getInstance();
     prefs.setString('curPath', path);
   }
@@ -84,7 +83,7 @@ class Storage {
     return prefs.getString('curPath') ?? '';
   }
 
-  static void setCurrentMethod(String path) async {
+  static Future setCurrentMethod(String path) async {
     var prefs = await SharedPreferences.getInstance();
     prefs.setString('curMethod', path);
   }
