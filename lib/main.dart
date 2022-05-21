@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:grpcclicker/left/frame.dart';
 import 'package:grpcclicker/logic/providers.dart';
+import 'package:grpcclicker/right/frame.dart';
 import 'package:grpcclicker/style/palette.dart';
 import 'package:provider/provider.dart';
+import 'package:multi_split_view/multi_split_view.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -29,9 +32,14 @@ void main() {
   });
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,18 +48,24 @@ class MyApp extends StatelessWidget {
         body: WindowBorder(
           color: Palette.black,
           width: 1,
-          child: Row(
-            children: [
-              Container(
-                child: Text(
-                  '',
-                  style: TextStyle(
-                    color: Palette.black,
-                  ),
-                ),
+          child: MultiSplitViewTheme(
+            data: MultiSplitViewThemeData(
+              dividerPainter: DividerPainters.background(
+                color: Palette.blueDark,
+                highlightedColor: Palette.yellow,
               ),
-              Container(),
-            ],
+              dividerThickness: 1.82,
+            ),
+            child: MultiSplitView(
+              initialAreas: [
+                Area(weight: 0.25, minimalWeight: 0.15),
+                Area(minimalWeight: 0.60),
+              ],
+              children: const [
+                LeftSide(),
+                RightSide(),
+              ],
+            ),
           ),
         ),
       ),
