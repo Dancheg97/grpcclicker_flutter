@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:grpcclicker/style/palette.dart';
+import 'package:grpcclicker/logic/palette.dart';
 
 class WindowButtons extends StatelessWidget {
   WindowButtons({Key? key}) : super(key: key);

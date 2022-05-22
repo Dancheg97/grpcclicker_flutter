@@ -3,7 +3,7 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:grpcclicker/left/frame.dart';
 import 'package:grpcclicker/logic/providers.dart';
 import 'package:grpcclicker/right/frame.dart';
-import 'package:grpcclicker/style/palette.dart';
+import 'package:grpcclicker/logic/palette.dart';
 import 'package:provider/provider.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 
